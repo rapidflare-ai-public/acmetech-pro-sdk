@@ -40,7 +40,7 @@ atp_status_t atp_hal_i2c_init(uint32_t instance, const atp_i2c_config_t *cfg, at
     if (instance >= I2C_COUNT || cfg == 0 || handle == 0) {
         return ATP_STATUS_INVALID_ARG;
     }
-    uint32_t core = atp_hal_clk_core_hz();
+    uint32_t core = atp_hal_clkmgr_core_hz();
     if (cfg->speed == ATP_I2C_SPEED_1M && core < 96000000u) {
         return ATP_STATUS_OUT_OF_RANGE;
     }

@@ -37,7 +37,7 @@ atp_status_t atp_hal_uart_init(uint32_t instance, const atp_uart_config_t *cfg, 
     }
 #endif
     /* The UART runs from the core clock divided by 16. */
-    uint32_t clk = atp_hal_clk_core_hz() / 16u;
+    uint32_t clk = atp_hal_clkmgr_core_hz() / 16u;
     uint32_t div = (clk + cfg->baudrate / 2u) / cfg->baudrate;
     uint32_t actual = clk / div;
     uint32_t err = actual > cfg->baudrate ? actual - cfg->baudrate : cfg->baudrate - actual;

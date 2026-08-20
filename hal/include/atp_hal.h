@@ -12,7 +12,7 @@
 
 #include "atp_status.h"
 #include "atp_hal_cfg.h"
-#include "atp_hal_clk.h"
+#include "atp_hal_clkmgr.h"
 #include "atp_hal_pwr.h"
 #include "atp_hal_gpio.h"
 #include "atp_hal_uart.h"

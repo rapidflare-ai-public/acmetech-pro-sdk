@@ -33,7 +33,7 @@ atp_status_t atp_hal_spi_init(uint32_t instance, const atp_spi_config_t *cfg, at
     if (instance >= SPI_COUNT || cfg == 0 || handle == 0) {
         return ATP_STATUS_INVALID_ARG;
     }
-    uint32_t core = atp_hal_clk_core_hz();
+    uint32_t core = atp_hal_clkmgr_core_hz();
     uint32_t want = k_clk_hz[cfg->clock];
 #if ATP_HAL_VALIDATE
     if (want > core / 4u) {

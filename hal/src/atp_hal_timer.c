@@ -23,6 +23,11 @@ static bool timer_reserved(uint32_t timer)
         return true;
     }
 #endif
+#if defined(ATP_CHIP_PRO29) && ATP_CFG_CLKMGR_AUTOCAL
+    if (timer == 6) {
+        return true;   /* HFRC_96M calibration, atp_hal_clkmgr.c */
+    }
+#endif
     return false;
 }
 
@@ -114,6 +119,6 @@ void atp_hal_delay_ms(uint32_t ms)
 void atp_hal_delay_us(uint32_t us)
 {
     /* About 4 cycles per loop. */
-    uint32_t loops = (atp_hal_clk_core_hz() / 4000000u) * us;
+    uint32_t loops = (atp_hal_clkmgr_core_hz() / 4000000u) * us;
     while (loops--) { __asm volatile ("nop"); }
 }

@@ -29,17 +29,10 @@ atp_status_t bsp_init(void)
 {
     atp_status_t st;
 
-    st = atp_hal_clk_enable(ATP_CLK_SRC_HFRC_96M);
-    if (st != ATP_STATUS_SUCCESS) {
-        return st;
-    }
 #if defined(ATP_CHIP_PRO100)
-    st = atp_hal_clk_enable(ATP_CLK_SRC_PLL_192M);
-    if (st == ATP_STATUS_SUCCESS) {
-        st = atp_hal_clk_core_set(ATP_CLK_SRC_PLL_192M);
-    }
+    st = atp_hal_clkmgr_core_set(ATP_CLKMGR_CLK_PLL_192M);
 #else
-    st = atp_hal_clk_core_set(ATP_CLK_SRC_HFRC_96M);
+    st = atp_hal_clkmgr_core_set(ATP_CLKMGR_CLK_HFRC_96M);
 #endif
     if (st != ATP_STATUS_SUCCESS) {
         return st;

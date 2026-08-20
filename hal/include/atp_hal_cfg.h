@@ -21,6 +21,12 @@
 #define ATP_CFG_HAL_TICK_TIMER 1
 #endif
 
+/* Pro-29 only: trim HFRC_96M against the LFRC once a second while it is on.
+ * Uses TIMER6. See atp_hal_clkmgr.c. Ignored on Pro-100 (its PLL is locked). */
+#ifndef ATP_CFG_CLKMGR_AUTOCAL
+#define ATP_CFG_CLKMGR_AUTOCAL 1
+#endif
+
 /* Default timeout for blocking transfers, in milliseconds. */
 #ifndef ATP_CFG_BLOCKING_TIMEOUT_MS
 #define ATP_CFG_BLOCKING_TIMEOUT_MS 100

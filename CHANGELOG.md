@@ -2,6 +2,17 @@
 
 All notable changes to the AcmeTech Pro SDK. (Fictional demo content; see NOTICE.md.)
 
+## 2.0.0
+
+**Breaking:** see [docs/migration/v1-to-v2.md](docs/migration/v1-to-v2.md).
+
+- New clock manager (`atp_hal_clkmgr.h`) replaces `atp_hal_clk.h`. Clocks are
+  reference counted per user.
+- Pro-29: HFRC_96M is calibrated against the LFRC once a second
+  (`ATP_CFG_CLKMGR_AUTOCAL`, on by default). 921600-baud UART now holds across
+  temperature.
+- `bsp_init()` uses the clock manager.
+
 ## 1.4.2
 
 - UART: fixed a lost byte when the RX FIFO filled during `atp_hal_uart_read()`.
