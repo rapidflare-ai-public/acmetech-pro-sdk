@@ -15,6 +15,7 @@ typedef enum {
     ATP_SPI_CLK_4MHZ,
     ATP_SPI_CLK_12MHZ,
     ATP_SPI_CLK_24MHZ,       /* since 1.4.0; core must run at 96 MHz or faster */
+    ATP_SPI_CLK_32MHZ,       /* since 2.1.0; Pro-100 only (needs a 128 MHz or faster core) */
 } atp_spi_clk_e;
 
 typedef enum { ATP_SPI_MODE0, ATP_SPI_MODE1, ATP_SPI_MODE2, ATP_SPI_MODE3 } atp_spi_mode_e;

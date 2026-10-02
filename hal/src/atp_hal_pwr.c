@@ -52,3 +52,23 @@ atp_status_t atp_hal_pwr_sleep(atp_pwr_sleep_e mode)
     __asm volatile ("wfi");
     return ATP_STATUS_SUCCESS;
 }
+
+#define INFO_CHIPREV  (*(volatile uint32_t *)0x50000010u)
+#define INFO_LDOTRIM  (*(volatile uint32_t *)0x50000040u)
+
+uint32_t atp_hal_pwr_chip_rev(void)
+{
+    return INFO_CHIPREV & 0xFu;
+}
+
+atp_status_t atp_hal_pwr_trim_apply(void)
+{
+#if defined(ATP_CHIP_PRO100)
+    if (atp_hal_pwr_chip_rev() == 0xBu) {
+        /* PRO100-E7: TRIM resets to 0x10 on deep sleep exit instead of
+         * keeping the factory value. */
+        PWRCTRL->TRIM = INFO_LDOTRIM & 0x3Fu;
+    }
+#endif
+    return ATP_STATUS_SUCCESS;
+}

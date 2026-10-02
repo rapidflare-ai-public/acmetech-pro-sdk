@@ -41,4 +41,13 @@ atp_status_t atp_hal_pwr_wkt_stop(void);
  * wake source armed returns ATP_HAL_PWR_ERR_WAKE_SOURCE without sleeping. */
 atp_status_t atp_hal_pwr_sleep(atp_pwr_sleep_e mode);
 
+/* Silicon revision: 0xA, 0xB, 0xC. */
+uint32_t atp_hal_pwr_chip_rev(void);
+
+/* Since 2.1.0. Re-apply the core regulator trim from the info block.
+ * Pro-100 rev B loses this trim in deep sleep (erratum PRO100-E7), which
+ * raises active current by about 18%. Call it after every deep sleep wake-up.
+ * It does nothing on Pro-29 or Pro-100 rev C. See docs/release_notes/2.1.0.md. */
+atp_status_t atp_hal_pwr_trim_apply(void);
+
 #endif /* ATP_HAL_PWR_H */

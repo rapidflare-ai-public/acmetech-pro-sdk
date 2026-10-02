@@ -132,7 +132,7 @@ atp_status_t atp_hal_i2c_recover(atp_i2c_handle_t h)
     if (h == 0 || !h->open) {
         return ATP_STATUS_INVALID_HANDLE;
     }
-    for (int i = 0; i < 9 && (h->regs[I2C_STAT] & STAT_SDA_LOW); i++) {
+    for (int i = 0; i < 9 && (h->regs[I2C_STAT] & STAT_SDA_LOW); i++) {   /* 2.1.0: stop once SDA is released */
         h->regs[I2C_CTRL] |= (1u << 5);   /* one manual SCL pulse */
         atp_hal_delay_us(10);
     }

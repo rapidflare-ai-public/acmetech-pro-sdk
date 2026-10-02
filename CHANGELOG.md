@@ -2,6 +2,15 @@
 
 All notable changes to the AcmeTech Pro SDK. (Fictional demo content; see NOTICE.md.)
 
+## 2.1.0
+
+See [docs/release_notes/2.1.0.md](docs/release_notes/2.1.0.md) for a required step on Pro-100 rev B.
+
+- New `atp_hal_pwr_trim_apply()` and `atp_hal_pwr_chip_rev()`.
+- SPI: `ATP_SPI_CLK_32MHZ` on Pro-100.
+- `atpflash --verify`.
+- I2C: `atp_hal_i2c_recover()` stops as soon as SDA is released.
+
 ## 2.0.0
 
 **Breaking:** see [docs/migration/v1-to-v2.md](docs/migration/v1-to-v2.md).

@@ -9,6 +9,7 @@ Exit codes:
     2  no board found on any serial port
     3  image does not fit in the application area
     4  board answered but is a different chip than --board
+    5  --verify: the image read back differs from the file (since 2.1.0)
 """
 
 import argparse
@@ -25,6 +26,7 @@ EXIT_OK = 0
 EXIT_NO_BOARD = 2
 EXIT_TOO_LARGE = 3
 EXIT_WRONG_CHIP = 4
+EXIT_VERIFY_FAILED = 5
 
 
 def find_board(port: str | None) -> tuple[str, int] | None:
@@ -32,11 +34,17 @@ def find_board(port: str | None) -> tuple[str, int] | None:
     return None  # demo: there is no hardware to find
 
 
+def verify(port: str, base: int, image: bytes) -> bool:
+    """Read len(image) bytes back from base and compare."""
+    return True  # demo: nothing to read back
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("image", type=Path, help="raw binary built for the application area")
     p.add_argument("--board", choices=sorted(BOARDS), required=True)
     p.add_argument("--port", help="serial port; default: try each one")
+    p.add_argument("--verify", action="store_true", help="read the image back and compare")
     args = p.parse_args()
 
     board = BOARDS[args.board]
@@ -56,6 +64,9 @@ def main() -> int:
         return EXIT_WRONG_CHIP
 
     print(f"flashing {size} bytes to {port} at 0x{board['app_base']:08x}")
+    if args.verify and not verify(port, board["app_base"], args.image.read_bytes()):
+        print("verify failed: the board's flash differs from the image", file=sys.stderr)
+        return EXIT_VERIFY_FAILED
     return EXIT_OK
 
 

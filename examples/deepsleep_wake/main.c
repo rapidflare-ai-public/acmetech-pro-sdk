@@ -32,6 +32,7 @@ int main(void)
     for (;;) {
         bsp_prepare_sleep();
         atp_hal_pwr_sleep(ATP_PWR_SLEEP_DEEP);
+        atp_hal_pwr_trim_apply();     /* 2.1.0: Pro-100 rev B erratum PRO100-E7 */
         bsp_resume_from_sleep();
 
         bsp_led_set(BSP_LED0, true);

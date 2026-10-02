@@ -26,7 +26,7 @@ struct atp_spi_handle {
 
 static struct atp_spi_handle g_spi[SPI_COUNT];
 
-static const uint32_t k_clk_hz[] = { 1000000u, 4000000u, 12000000u, 24000000u };
+static const uint32_t k_clk_hz[] = { 1000000u, 4000000u, 12000000u, 24000000u, 32000000u };
 
 atp_status_t atp_hal_spi_init(uint32_t instance, const atp_spi_config_t *cfg, atp_spi_handle_t *handle)
 {

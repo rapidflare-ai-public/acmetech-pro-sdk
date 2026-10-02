@@ -7,7 +7,7 @@
 The AcmeTech Pro SDK is the hardware abstraction layer (HAL), board support and
 peripheral drivers for the AcmeTech Pro family of microcontrollers.
 
-**Version 2.0.0**
+**Version 2.1.0**
 
 ## Supported parts
 
@@ -35,7 +35,7 @@ boards/         pin maps and board init for each evaluation kit
 drivers/        drivers for AcmeTech cameras and displays
 examples/       small programs, one folder each
 tools/atpflash  the flashing tool
-docs/           getting started and the 1.x to 2.x migration guide
+docs/           getting started, the 1.x to 2.x migration guide, release notes
 ```
 
 ## Getting started
